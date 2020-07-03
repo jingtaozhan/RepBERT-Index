@@ -85,6 +85,8 @@ def allrank(gpu_queue, doc_begin_index, doc_end_index, finish_queue):
             else:
                 cur_q_queue.put_nowait((score, docid))
         finish_queue.put(cur_q_queue.queue)
+    doc_embeddings, all_scores, query_embedding, top_scores, top_indices = None, None, None, None, None
+    torch.cuda.empty_cache()
     gpu_queue.put_nowait(gpuid)
 
 
