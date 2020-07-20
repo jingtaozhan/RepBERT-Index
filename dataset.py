@@ -75,6 +75,8 @@ class MSMARCODataset(Dataset):
         tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
         self.cls_id = tokenizer.cls_token_id
         self.sep_id = tokenizer.sep_token_id
+        self.max_query_length = max_query_length
+        self.max_doc_length = max_doc_length
 
     def __len__(self):  
         return len(self.qids)
@@ -98,9 +100,9 @@ class MSMARCODataset(Dataset):
         return ret_val
 
 
-def pack_tensor_2D(lstlst, default, dtype):
+def pack_tensor_2D(lstlst, default, dtype, length=None):
     batch_size = len(lstlst)
-    length =  max(len(l) for l in lstlst)
+    length = length if length is not None else max(len(l) for l in lstlst)
     tensor = default * torch.ones((batch_size, length), dtype=dtype)
     for i, l in enumerate(lstlst):
         tensor[i, :len(l)] = torch.tensor(l, dtype=dtype)

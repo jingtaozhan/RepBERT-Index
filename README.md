@@ -9,12 +9,11 @@ MS MARCO Passage Ranking Leaderboard (Jun 28th 2020) | Eval MRR@10 | Latency
 :------------------------------------ | :------: | ------:
 [BM25 + BERT](https://github.com/nyu-dl/dl4marco-bert) from [(Nogueira and Cho, 2019)](https://arxiv.org/abs/1901.04085) | 0.358 | 3400 ms
 BiLSTM + Co-Attention + self attention based document scorer [(Alaparthi et al., 2019)](https://arxiv.org/abs/1906.06056) (best non-BERT) | 0.291 | -
-RepBERT (this code)             | 0.294 | 66 ms
+RepBERT (this code)             | 0.294 | 80 ms
 [docTTTTTquery](https://github.com/castorini/docTTTTTquery) [(Nogueira1 et al., 2019)](https://cs.uwaterloo.ca/~jimmylin/publications/Nogueira_Lin_2019_docTTTTTquery.pdf)             | 0.272 | 64 ms
 [DeepCT](https://github.com/AdeDZY/DeepCT) [(Dai and Callan, 2019)](https://github.com/AdeDZY/DeepCT)              | 0.239 | 55 ms
 [doc2query](https://github.com/nyu-dl/dl4ir-doc2query) [(Nogueira et al., 2019)](https://github.com/nyu-dl/dl4ir-doc2query)              | 0.218 | 90 ms
 [BM25(Anserini)](https://github.com/castorini/anserini/blob/master/docs/experiments-msmarco-passage.md)  | 0.186  | 50 ms
-
 
 ## Data and Trained Models
 
@@ -66,7 +65,7 @@ python convert_collection_to_memmap.py
 
 Please download the provided model `repbert.ckpt-350000.zip`, put it in `./data`, and unzip it. You should see two files in the directory `./data/ckpt-350000`, namely `pytorch_model.bin` and `config.json`.
 
-Next, you need to precompute the representations of passages and queries. Strictly speaking, the representations of queries should not be computed in advance (offline). In our implementation, we do it to keep the code elegant. Note that it takes little time (less than 1 ms/query) to compute the representations of queries. Therefore, precomputing them hardly affects the results of query latency in the retrieval stage. 
+Next, you need to precompute the representations of passages and queries. 
 
 ```bash
 python precompute.py --load_model_path ./data/ckpt-350000 --task doc
@@ -100,4 +99,22 @@ QueriesRanked: 6980
 
 ## Train RepBERT
 
-The code and instructions will be released soon.
+Next, download `qidpidtriples.train.full.tsv.gz` from [MSMARCO-Passage-Ranking](https://github.com/microsoft/MSMARCO-Passage-Ranking).
+
+```bash
+cd ./data/msmarco-passage
+wget https://msmarco.blob.core.windows.net/msmarcoranking/qidpidtriples.train.full.tsv.gz
+```
+
+Extract it and use `shuf` command to generate a smaller file (10%).
+
+```bash
+shuf ./qidpidtriples.train.full.tsv -o ./qidpidtriples.train.small.tsv -n 26991900
+```
+
+Start training. Note that the evaluaton result is about reranking.
+
+```bash
+python ./train.py --task train --evaluate_during_training
+```
+
