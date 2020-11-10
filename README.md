@@ -1,5 +1,9 @@
 # RepBERT
 
+Recently, we proposed a new Dense Retrieval training method, Learning To Retrieve (LTRe). It is very effective and efficient. Check out our paper:
+[Learning To Retrieve: How to Train a Dense Retrieval Model Effectively and Efficiently.](https://arxiv.org/abs/2010.10469)
+
+
 RepBERT is is currently the state-of-the-art first-stage retrieval technique on [MS MARCO Passage Ranking task](https://microsoft.github.io/msmarco/). It represents documents and queries with fixed-length contextualized embeddings. The inner products of them are regarded as relevance scores. Its efficiency is comparable to bag-of-words methods. For more details, check out our paper:
 
 + Zhan et al.  [RepBERT: Contextualized Text Embeddings for First-Stage Retrieval.](https://arxiv.org/abs/2006.15498)
