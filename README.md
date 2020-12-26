@@ -1,23 +1,25 @@
-# RepBERT
+# Learning To Retrieve (LTRe)
 
-Recently, we proposed a new Dense Retrieval training method, Learning To Retrieve (LTRe). It is very effective and efficient. Check out our paper:
+Recently, we proposed a new Dense Retrieval training method, Learning To Retrieve (LTRe). It is very effective and efficient. It achieves 0.341 in MRR@10 on MSMARCO Passage first-stage retrieval. Check out our paper:
 [Learning To Retrieve: How to Train a Dense Retrieval Model Effectively and Efficiently.](https://arxiv.org/abs/2010.10469)
 
+# RepBERT
 
 RepBERT is is currently the state-of-the-art first-stage retrieval technique on [MS MARCO Passage Ranking task](https://microsoft.github.io/msmarco/). It represents documents and queries with fixed-length contextualized embeddings. The inner products of them are regarded as relevance scores. Its efficiency is comparable to bag-of-words methods. For more details, check out our paper:
 
 + Zhan et al.  [RepBERT: Contextualized Text Embeddings for First-Stage Retrieval.](https://arxiv.org/abs/2006.15498)
 
 
-MS MARCO Passage Ranking Leaderboard (Jun 28th 2020) | Eval MRR@10 | Latency
-:------------------------------------ | :------: | ------:
-[BM25 + BERT](https://github.com/nyu-dl/dl4marco-bert) from [(Nogueira and Cho, 2019)](https://arxiv.org/abs/1901.04085) | 0.358 | 3400 ms
-BiLSTM + Co-Attention + self attention based document scorer [(Alaparthi et al., 2019)](https://arxiv.org/abs/1906.06056) (best non-BERT) | 0.291 | -
-RepBERT (this code)             | 0.294 | 80 ms
-[docTTTTTquery](https://github.com/castorini/docTTTTTquery) [(Nogueira1 et al., 2019)](https://cs.uwaterloo.ca/~jimmylin/publications/Nogueira_Lin_2019_docTTTTTquery.pdf)             | 0.272 | 64 ms
-[DeepCT](https://github.com/AdeDZY/DeepCT) [(Dai and Callan, 2019)](https://github.com/AdeDZY/DeepCT)              | 0.239 | 55 ms
-[doc2query](https://github.com/nyu-dl/dl4ir-doc2query) [(Nogueira et al., 2019)](https://github.com/nyu-dl/dl4ir-doc2query)              | 0.218 | 90 ms
-[BM25(Anserini)](https://github.com/castorini/anserini/blob/master/docs/experiments-msmarco-passage.md)  | 0.186  | 50 ms
+MS MARCO Passage Ranking Leaderboard (Jun 28th 2020) | Category | Eval MRR@10 | Latency
+:------------------------------------ | :------------: | :------: | ------:
+[BM25 + BERT](https://github.com/nyu-dl/dl4marco-bert) from [(Nogueira and Cho, 2019)](https://arxiv.org/abs/1901.04085) | Cascade | 0.358 | 3400 ms
+[LTRe](https://arxiv.org/abs/2010.10469) (our recent work)      | First-Stage  | 0.341 | 47 ms
+RepBERT (this code)      | First-Stage       | 0.294 | 80 ms
+BiLSTM + Co-Attention + self attention based document scorer [(Alaparthi et al., 2019)](https://arxiv.org/abs/1906.06056) (best non-BERT) | Cascade | 0.291 | -
+[docTTTTTquery](https://github.com/castorini/docTTTTTquery) [(Nogueira1 et al., 2019)](https://cs.uwaterloo.ca/~jimmylin/publications/Nogueira_Lin_2019_docTTTTTquery.pdf)        | First-Stage     | 0.272 | 64 ms
+[DeepCT](https://github.com/AdeDZY/DeepCT) [(Dai and Callan, 2019)](https://github.com/AdeDZY/DeepCT)        | First-Stage      | 0.239 | 55 ms
+[doc2query](https://github.com/nyu-dl/dl4ir-doc2query) [(Nogueira et al., 2019)](https://github.com/nyu-dl/dl4ir-doc2query)        | First-Stage      | 0.218 | 90 ms
+[BM25(Anserini)](https://github.com/castorini/anserini/blob/master/docs/experiments-msmarco-passage.md) | First-Stage  | 0.186  | 50 ms
 
 ## Data and Trained Models
 
