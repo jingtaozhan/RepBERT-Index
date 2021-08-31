@@ -1,9 +1,8 @@
-# Learning To Retrieve (LTRe)
-
-Recently, we proposed a new Dense Retrieval training method, Learning To Retrieve (LTRe). It is very effective and efficient. It achieves 0.341 in MRR@10 on MSMARCO Passage first-stage retrieval. Check out our paper:
-[Learning To Retrieve: How to Train a Dense Retrieval Model Effectively and Efficiently.](https://arxiv.org/abs/2010.10469)
-
 # RepBERT
+
+* 🔥**News 2021-8: Our full paper, [Jointly Optimizing Query Encoder and Product Quantization to Improve Retrieval Performance](https://arxiv.org/abs/2108.00644)\[[code](https://github.com/jingtaozhan/JPQ)\], was accepted by CIKM'21. It presents JPQ and greatly improves the efficiency of Dense Retrieval.**
+
+* 🔥**News 2021-4: Our full paper, [Optimizing Dense Retrieval Model Training with Hard Negatives](https://arxiv.org/abs/2104.08051)\[[code](https://github.com/jingtaozhan/DRhard)\], was accepted by SIGIR'21. It provides theoretical analysis on different negative sampling strategies and greatly improves the effectiveness of Dense Retrieval with hard negative sampling.**
 
 RepBERT is is currently the state-of-the-art first-stage retrieval technique on [MS MARCO Passage Ranking task](https://microsoft.github.io/msmarco/). It represents documents and queries with fixed-length contextualized embeddings. The inner products of them are regarded as relevance scores. Its efficiency is comparable to bag-of-words methods. For more details, check out our paper:
 
@@ -13,7 +12,6 @@ RepBERT is is currently the state-of-the-art first-stage retrieval technique on 
 MS MARCO Passage Ranking Leaderboard (Jun 28th 2020) | Category | Eval MRR@10 | Latency
 :------------------------------------ | :------------: | :------: | ------:
 [BM25 + BERT](https://github.com/nyu-dl/dl4marco-bert) from [(Nogueira and Cho, 2019)](https://arxiv.org/abs/1901.04085) | Cascade | 0.358 | 3400 ms
-[LTRe](https://arxiv.org/abs/2010.10469) (our recent work)      | First-Stage  | 0.341(Dev) | 47 ms
 RepBERT (this code)      | First-Stage       | 0.294 | 80 ms
 BiLSTM + Co-Attention + self attention based document scorer [(Alaparthi et al., 2019)](https://arxiv.org/abs/1906.06056) (best non-BERT) | Cascade | 0.291 | -
 [docTTTTTquery](https://github.com/castorini/docTTTTTquery) [(Nogueira1 et al., 2019)](https://cs.uwaterloo.ca/~jimmylin/publications/Nogueira_Lin_2019_docTTTTTquery.pdf)        | First-Stage     | 0.272 | 64 ms
